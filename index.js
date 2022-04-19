@@ -2,11 +2,11 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+
 const app = express();
 
 dotenv.config();
 const PORT = 4000;
-// "mongodb://localhost"
 const MONGO_URL = process.env.MONGO_URL;
 app.use(express.json());
 
@@ -35,7 +35,6 @@ app.get("/movies", async function (req, res) {
 app.get("/movies/:id", async function (req, res) {
   const { id } = req.params;
   const movie = await client.db("b30").collection("movies").findOne({ id });
-  //   const movie = movies.find((mv) => mv.id === id);
   movie ? res.send(movie) : res.status(404).send("Data not found!");
 });
 
@@ -45,7 +44,6 @@ app.delete("/movies/:id", async function (req, res) {
     .db("b30")
     .collection("movies")
     .deleteOne({ id: id });
-  //   const movie = movies.find((mv) => mv.id === id);
   res.send(result);
 });
 
@@ -56,7 +54,6 @@ app.put("/movies/:id", async function (req, res) {
     .db("b30")
     .collection("movies")
     .updateOne({ id: id }, { $set: update });
-  //   const movie = movies.find((mv) => mv.id === id);
   res.send(result);
 });
 
