@@ -22,3 +22,7 @@ export async function deleteMovie(id) {
 export async function createMovies(data) {
   return await client.db("b30").collection("movies").insertMany(data);
 }
+
+export async function createUsers(data) {
+  return await client.db("b30").collection("users").insertOne(data);
+}
