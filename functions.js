@@ -15,6 +15,13 @@ export async function getMovie(id) {
   return await client.db("b30").collection("movies").findOne({ id });
 }
 
+export async function getUserByName(username) {
+  return await client
+    .db("b30")
+    .collection("users")
+    .findOne({ username: username });
+}
+
 export async function deleteMovie(id) {
   return await client.db("b30").collection("movies").deleteOne({ id: id });
 }
@@ -23,6 +30,6 @@ export async function createMovies(data) {
   return await client.db("b30").collection("movies").insertMany(data);
 }
 
-export async function createUsers(data) {
+export async function createUser(data) {
   return await client.db("b30").collection("users").insertOne(data);
 }

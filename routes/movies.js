@@ -6,10 +6,11 @@ import {
   createMovies,
 } from "../functions.js";
 import express from "express";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", async function (req, res) {
+router.get("/", auth, async function (req, res) {
   const mov = await findAllMovies();
   res.send(mov);
 });
